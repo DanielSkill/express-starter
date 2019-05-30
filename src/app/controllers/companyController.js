@@ -1,11 +1,13 @@
 var models = require('../models');
 
 exports.index = (req, res) => {
-  return res.json(models.Company.findAll())
+  models.Company.findAll().then(companies => {
+    return res.json(companies)
+  })
 }
 
 exports.create = (req, res) => {
-  var company = models.Company.create({
+  models.Company.create({
     name: req.query.name
   })
   .then (company => {
