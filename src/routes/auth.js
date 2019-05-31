@@ -5,12 +5,14 @@ var passport = require('passport');
 var router = express.Router();
 
 router.get('/login', authController.login)
+router.get('/register', authController.register)
 
 router.get('/logout', authController.logout)
 
-router.post('/register', passport.authenticate('local-signup'), function(req, res) {
-  res.send(req.user);
-});
+router.post('/register', passport.authenticate('local-signup', {
+  successRedirect: '/dashboard',
+  failureRedirect: '/register'
+}));
 
 router.post('/login', passport.authenticate('local-signin', {
   successRedirect: '/dashboard',
