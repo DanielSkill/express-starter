@@ -9,12 +9,24 @@ block content
           form(action="/register" method="post")
             .uk-margin
               .uk-inline.uk-width-1-1
+                span.uk-form-icon(uk-icon='icon: user')
+                input.uk-input.uk-form-large(type='text' name="firstname" placeholder="firstname")
+            .uk-margin
+              .uk-inline.uk-width-1-1
+                span.uk-form-icon(uk-icon='icon: user')
+                input.uk-input.uk-form-large(type='text' name="lastname" placeholder="lastname")
+            .uk-margin
+              .uk-inline.uk-width-1-1
+                span.uk-form-icon(uk-icon='icon: user')
+                input.uk-input.uk-form-large(type='text' name="username" placeholder="username")
+            .uk-margin
+              .uk-inline.uk-width-1-1
                 span.uk-form-icon(uk-icon='icon: mail')
-                input.uk-input.uk-form-large(type='text' name="email")
+                input.uk-input.uk-form-large(type='text' name="email" placeholder="mail")
             .uk-margin
               .uk-inline.uk-width-1-1
                 span.uk-form-icon(uk-icon='icon: lock')
-                input.uk-input.uk-form-large(type='password' name="password")
+                input.uk-input.uk-form-large(type='password' name="password" placeholder="password")
             .uk-margin
               button.uk-button.uk-button-primary.uk-button-large.uk-width-1-1 Register
             .uk-text-small.uk-text-center
