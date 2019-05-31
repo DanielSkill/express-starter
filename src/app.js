@@ -6,24 +6,48 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var companyRouter = require('./routes/company');
-
 var app = express();
+
+var passport = require('passport');
+var session = require('express-session');
+var bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+
+// For Passport
+app.use(session({
+  secret: 'secret cat',
+  resave: true,
+  saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
+
 app.use(express.json());
 app.use(express.urlencoded({
   extended: false
 }));
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+var models = require("./app/models");
+require('./app/support/auth/passport-local-strategy')(passport, models.User);
+
+var indexRouter = require('./routes/index');
+var companyRouter = require('./routes/company');
+var authRouter = require('./routes/auth');
+
 app.use('/', indexRouter);
+app.use('/', authRouter);
 app.use('/company', companyRouter);
 
 // catch 404 and forward to error handler
