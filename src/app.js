@@ -42,6 +42,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 var models = require("./app/models");
 require('./app/support/auth/passport-local-strategy')(passport, models.User);
 
+// make authenticated user accessible in views
+app.use(function (req, res, next) {
+  res.locals.auth_user = req.user;
+  res.locals.request = req;
+
+  next();
+});
+
 var indexRouter = require('./routes/index');
 var companyRouter = require('./routes/company');
 var authRouter = require('./routes/auth');
