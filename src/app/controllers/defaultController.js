@@ -1,5 +1,3 @@
 exports.index = (req, res) => {
-  res.json({
-    'hello': 'world'
-  })
+  res.render('index');
 }
