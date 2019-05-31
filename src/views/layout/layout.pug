@@ -1,7 +1,11 @@
 doctype html
 html
+
+  block variables
+
   head
-    title= title
+    - var title = title || "Express App"
+    title= title 
     link(rel='stylesheet', href='/css/main.css')
   body
     
