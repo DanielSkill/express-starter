@@ -3,5 +3,5 @@ var authenticated = require('./authenticated')
 
 module.exports = {
   view: view.view,
-  authenticatd: authenticated.isAuthenticated
+  authenticated: authenticated.isAuthenticated
 }
