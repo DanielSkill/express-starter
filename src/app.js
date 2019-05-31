@@ -11,6 +11,7 @@ var app = express();
 var passport = require('passport');
 var session = require('express-session');
 var bodyParser = require('body-parser');
+var middleware = require('./app/support/middleware');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -43,12 +44,7 @@ var models = require("./app/models");
 require('./app/support/auth/passport-local-strategy')(passport, models.User);
 
 // make authenticated user accessible in views
-app.use(function (req, res, next) {
-  res.locals.auth_user = req.user;
-  res.locals.request = req;
-
-  next();
-});
+app.use(middleware.view);
 
 var indexRouter = require('./routes/index');
 var companyRouter = require('./routes/company');
