@@ -9,12 +9,12 @@ router.get('/register', authController.register)
 
 router.get('/logout', authController.logout)
 
-router.post('/register', passport.authenticate('local-signup', {
+router.post('/register', passport.authenticate('local-register', {
   successRedirect: '/dashboard',
   failureRedirect: '/register'
 }));
 
-router.post('/login', passport.authenticate('local-signin', {
+router.post('/login', passport.authenticate('local-login', {
   successRedirect: '/dashboard',
   failureRedirect: '/login'
 }));
