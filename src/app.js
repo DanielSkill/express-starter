@@ -41,7 +41,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 var models = require("./app/models");
-require('./app/support/auth/passport-local-strategy')(passport, models.User);
+require('./app/support/auth/passport-local-strategy');
 
 // make authenticated user accessible in views
 app.use(middleware.view);
